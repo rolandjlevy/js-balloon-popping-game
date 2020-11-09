@@ -1,7 +1,9 @@
 :root {
   --game-width: 400px;
-  --game-height: 300px;
-  --ball-size: 50px;
+  --game-height: 400px;
+  --ball-size: 80px;
+  --red: #ee3300cc;
+  --red-bright: #ee3300;
 }
 
 body {
@@ -42,7 +44,7 @@ body {
   position: absolute;
   width: calc(var(--ball-size) * 0.75);
   height: var(--ball-size);
-  animation: rise 5s 1 cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  animation: rise 7s 1 cubic-bezier(0.19, 1, 0.22, 1) forwards;
   animation-play-state: paused;
   filter: drop-shadow(0 0 10px #ffffff99);
 }
@@ -50,22 +52,22 @@ body {
 .inner {
   width: 100%;
   height: 100%;
-  background-color: #ee3300;
+  background-color: var(--red);
   border-radius: 80%;
   box-shadow: inset -10px -10px 0 rgba(0,0,0,0.1);
-  animation: pop 1s 1 cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  animation: pop 0.5s 1 cubic-bezier(0.19, 1, 0.22, 1) forwards;
   animation-play-state: paused;
 }
 
 .inner:before {
   content:"▲";
-  font-size: 8px;
-  color: #ee3300;
+  font-size: 12px;
+  color: var(--red);
   display: block;
   text-align: center;
   width: 100%;
   position: absolute;
-  bottom: -7px;
+  bottom: -10px;
 }
 
 @keyframes pop {
@@ -74,8 +76,10 @@ body {
     opacity: 1;
   }
   10% {
-    transform: scale(1.5);
+    transform: scale(1.3);
     opacity: 1;
+    filter: drop-shadow(0 0 10px #ffffff99);
+    background-color: var(--red-bright);
   }
   100% {
     transform: scale(0.2);
@@ -89,5 +93,6 @@ body {
   }
   to {
     transform: translateY(calc(var(--ball-size) * -2));
+    display: none;
   }
 }

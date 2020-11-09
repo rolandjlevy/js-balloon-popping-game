@@ -1,3 +1,6 @@
+import { Sound } from './src/Sound.js';
+
+const sound = new Sound();
 
 const $ = selector => document.querySelector(selector);
 const $$ = selector => document.querySelectorAll(selector);
@@ -6,18 +9,13 @@ const getRandomNumber = (min, max) => Math.round(Math.random() * (max - min + 1)
 
 const delay = (t) => new Promise(resolve => setTimeout(resolve, t));
 
-// $$('.ball').forEach(item => {
-//   item.addEventListener('click', (e) => {
-//     console.log('pop!')
-//   });
-// });
-
 async function cloneBall() {
   await delay(1000);
   const clone = $('.ball').cloneNode(true);
   clone.addEventListener('click', (e) => {
     clone.firstElementChild.style.animationPlayState = 'running';
     clone.style.animationPlayState = 'paused';
+    sound.init('pop.mp3');
   });
   clone.style.animationPlayState = 'running';
   const posX = `${getRandomNumber(0, 350)}px`;
@@ -25,9 +23,19 @@ async function cloneBall() {
   $('.container').appendChild(clone);
 }
 
-function loop() {
+function releaseLoop() {
   cloneBall();
-  const rand = getRandomNumber(5, 20);
-  setTimeout(loop, rand * 100);
+  const rand = getRandomNumber(1, 10);
+  setTimeout(releaseLoop, rand * 100);
 }
-loop();
+releaseLoop();
+
+function cleanUpLoop() {
+  $$('.container > div').forEach(item => {
+    if (item.getBoundingClientRect().top < -100) {
+      $('.container').removeChild(item);
+    }
+  });
+  setTimeout(gameLoop, 1);
+}
+cleanUpLoop();
