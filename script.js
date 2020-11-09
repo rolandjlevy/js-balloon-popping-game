@@ -36,6 +36,6 @@ function cleanUpLoop() {
       $('.container').removeChild(item);
     }
   });
-  setTimeout(gameLoop, 1);
+  setTimeout(cleanUpLoop, 1);
 }
 cleanUpLoop();
