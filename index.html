@@ -3,14 +3,21 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>repl.it</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
+    <title>Balloon popping game</title>
+    <link href="styles/balloon.css" rel="stylesheet" type="text/css" />
+    <link href="styles/layout.css" rel="stylesheet" type="text/css" />
+    <link href="styles/main.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   </head>
   <body>
 
     <main class="wrapper v-center">
+      <div class="score">0</div>
       <section class="container nature">
-        <div class="ball"><div class="inner"></div></div>
+        <div class="balloon">
+          <div class="inner v-center"></div>
+          <div class="stick"></div>
+        </div>
       </section>
     </main>
 

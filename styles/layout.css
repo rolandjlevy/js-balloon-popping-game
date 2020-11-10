@@ -1,0 +1,18 @@
+
+.wrapper {
+  height: 100vh;
+}
+
+.h-center, .v-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.h-center {
+  flex-direction: row;
+}
+
+.v-center {
+  flex-direction: column;
+}
