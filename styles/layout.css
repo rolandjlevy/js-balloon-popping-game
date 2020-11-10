@@ -16,3 +16,7 @@
 .v-center {
   flex-direction: column;
 }
+
+.m-l-10 {
+  margin-left: 10px;
+}

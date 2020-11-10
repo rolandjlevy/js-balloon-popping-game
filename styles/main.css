@@ -15,16 +15,26 @@ body {
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none; /* Standard */
+  color: #fff;
+  font-family: monospace;
 }
 
 .nature {
   background: linear-gradient(0deg,#7eb400 10%,#d5ff3d 30%,#fff 50%,#c6e8ff 55%,#34aaf8,#032bac 90%);
 }
 
-.score {
-  color: #fff;
-  font-size: 2rem;
-  font-weight: bold;
-  font-family: monospace;
+h2 {
+  font-size: 2.5rem;
+  margin: 0;
+  color: #ccc;
 }
 
+.display {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.label {
+  font-size: 1.25rem;
+  font-weight: normal;
+}

@@ -1,11 +1,11 @@
 :root {
   --game-width: 400px;
   --game-height: 400px;
-  --ball-size: 80px;
+  --balloon-size: 80px;
   --red: #ee0066cc;
   --red-bright: #ee0066;
   --red-mid: #ff73b0;
-  --red-light: #ffb8d7;
+  --red-light: #fff0f6;
 }
 
 .container {
@@ -14,13 +14,14 @@
   width: var(--game-width);
   height: var(--game-height);
   border: 10px solid #333;
+  border-radius: 20px;
 }
 
 .balloon {
   position: absolute;
   display: initial;
-  width: calc(var(--ball-size) * 0.75);
-  height: var(--ball-size);
+  width: calc(var(--balloon-size) * 0.75);
+  height: var(--balloon-size);
   animation: rise 5s 1 cubic-bezier(0.19, 1, 0.22, 1) forwards;
   animation-play-state: paused;
   filter: drop-shadow(0 0 10px #ffffff99);
@@ -28,6 +29,7 @@
   --end-pos-x: 0;
   --start-pos-x: 0;
   --rotation: 0;
+  --points: 1;
   transition: all 0.25s ease;
 }
 
@@ -80,10 +82,12 @@
 
 @keyframes rise {
   from {
-    transform: translateX(var(--start-pos-x)) translateY(var(--game-height)) rotate(0deg);
+    --scale: calc((10 - var(--points)) / 10);
+    transform: translateX(var(--start-pos-x)) translateY(var(--game-height)) rotate(0deg) scale(var(--scale));
   }
   to {
-    transform: translateX(var(--end-pos-x)) translateY(calc(var(--ball-size) * -2)) rotate(var(--rotation));
+    --scale: calc((10 - var(--points)) / 10);
+    transform: translateX(var(--end-pos-x)) translateY(calc(var(--balloon-size) * -2)) rotate(var(--rotation)) scale(var(--scale));
     display: none;
   }
 }

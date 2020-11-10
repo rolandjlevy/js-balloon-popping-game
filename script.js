@@ -2,6 +2,8 @@ import { Sound } from './src/Sound.js';
 
 const sound = new Sound();
 
+const maxBalloons = 100;
+let remaining = maxBalloons;
 let score = 0;
 
 const $ = selector => document.querySelector(selector);
@@ -13,30 +15,41 @@ const delay = (t) => new Promise(resolve => setTimeout(resolve, t));
 
 async function cloneBall() {
   await delay(1000);
+  if (remaining <= 0) return;
+  remaining--;
   const clone = $('.balloon').cloneNode(true);
   clone.addEventListener('click', (e) => {
     clone.firstElementChild.style.animationPlayState = 'running';
     clone.style.animationPlayState = 'paused';
-    $('.score').textContent = ++score;
+    score += Number(clone.id);
+    $('.score.display').textContent = score;
     sound.init('pop.mp3');
   });
-  clone.firstElementChild.textContent = getRandomNumber(1, 4);
-  clone.style.animationPlayState = 'running';
-  // const animationDelay = `${getRandomNumber(5, 20) / 10}s !important`;
-  // clone.style.animationDelay = animationDelay;
+  $('.remaining.display').textContent = remaining;
+  const points = getRandomNumber(1, 4);
+  clone.firstElementChild.textContent = points;
+  clone.id = points;
+  clone.style.setProperty('--points', points);
   const endPosX = `${getRandomNumber(0, 320)}px`
   clone.style.setProperty('--end-pos-x', endPosX);
   const startPosX = `${getRandomNumber(0, 320)}px`;
   clone.style.setProperty('--start-pos-x', startPosX);
   const rotation = `${getRandomNumber(-60, 60)}deg`;
   clone.style.setProperty('--rotation', rotation);
+  clone.style.animationPlayState = 'running';
   $('.container').appendChild(clone);
 }
 
+let timerId = null;
+
 function releaseLoop() {
+  if (remaining === 0) {
+    clearTimeout(timerId);
+    return;
+  }
   cloneBall();
   const rand = getRandomNumber(1, 15);
-  setTimeout(releaseLoop, rand * 100);
+  timerId = setTimeout(releaseLoop, rand * 100);
 }
 releaseLoop();
 
