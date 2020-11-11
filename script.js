@@ -1,10 +1,14 @@
+import { Balloon } from './src/Balloon.js';
+import { Score } from './src/Score.js';
 import { Sound } from './src/Sound.js';
 
+const score = new Score();
 const sound = new Sound();
 
-const maxBalloons = 100;
-let remaining = maxBalloons;
-let score = 0;
+// import { Game } from './src/Game.js';
+// const game = new Game();
+// game.releaseLoop();
+// game.cleanUpLoop();
 
 const $ = selector => document.querySelector(selector);
 const $$ = selector => document.querySelectorAll(selector);
@@ -13,23 +17,22 @@ const getRandomNumber = (min, max) => Math.round(Math.random() * (max - min + 1)
 
 const delay = (t) => new Promise(resolve => setTimeout(resolve, t));
 
-async function cloneBall() {
+async function cloneOne() {
   await delay(1000);
-  if (remaining <= 0) return;
-  remaining--;
+  if (score.pointsList.length <= 0) return;
   const clone = $('.balloon').cloneNode(true);
   clone.addEventListener('click', (e) => {
     clone.firstElementChild.style.animationPlayState = 'running';
     clone.style.animationPlayState = 'paused';
-    score += Number(clone.id);
-    $('.score.display').textContent = score;
+    score.points += Number(clone.id);
+    $('.points.display').textContent = score.points;
     sound.init('pop.mp3');
   });
-  $('.remaining.display').textContent = remaining;
-  const points = getRandomNumber(1, 4);
-  clone.firstElementChild.textContent = points;
-  clone.id = points;
-  clone.style.setProperty('--points', points);
+  const p = score.pointsList.pop();
+  $('.remaining.display').textContent = score.pointsList.length;
+  clone.firstElementChild.textContent = p;
+  clone.id = p;
+  clone.style.setProperty('--points', p);
   const endPosX = `${getRandomNumber(0, 320)}px`
   clone.style.setProperty('--end-pos-x', endPosX);
   const startPosX = `${getRandomNumber(0, 320)}px`;
@@ -43,13 +46,12 @@ async function cloneBall() {
 let timerId = null;
 
 function releaseLoop() {
-  if (remaining === 0) {
+  if (score.pointsList.length === 0) {
     clearTimeout(timerId);
     return;
   }
-  cloneBall();
-  const rand = getRandomNumber(1, 15);
-  timerId = setTimeout(releaseLoop, rand * 100);
+  cloneOne();
+  timerId = setTimeout(releaseLoop, getRandomNumber(1, 15) * 100);
 }
 releaseLoop();
 
@@ -66,20 +68,3 @@ function cleanUpLoop() {
   setTimeout(cleanUpLoop, 1);
 }
 cleanUpLoop();
-
-function getLeaderBoard() {
-  const maxIndex = 20;
-  $('.scores').innerHTML = '<li>Loading...</li>';
-  fetch('src/data.json')
-  .then(res => res.json())
-  .then(data => {
-    const list = data
-    .sort((a, b) => b.score - a.score)
-    .map(item => `<li>${item.name}: ${item.score}</li>`)
-    .filter((_, index) => index <= maxIndex)
-    .join('');
-    $('.scores').innerHTML = list;
-  });
-}
-
-getLeaderBoard();
