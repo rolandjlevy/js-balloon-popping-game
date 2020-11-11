@@ -2,8 +2,8 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Balloon popping game</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1.0, maximum-scale=1.0">
+    <title>Poppem game</title>
     <link href="styles/balloon.css" rel="stylesheet" type="text/css" />
     <link href="styles/layout.css" rel="stylesheet" type="text/css" />
     <link href="styles/main.css" rel="stylesheet" type="text/css" />
@@ -13,7 +13,7 @@
 
     <main class="wrapper v-center">
       <header>
-        <h2>Pop the Balloons</h2>
+        <h2>Pop</h2>
       </header>
       <section class="h-center">
         <p class="v-center m-l-10">
@@ -32,8 +32,15 @@
           <div class="stick"></div>
         </div>
       </section>
+
+      <section class="leader-board v-center">
+        <h3>Leader Board <sup>top 20</sup></h3>
+        <ul class="scores scrollable"></ul>
+      </section>
+
     </main>
 
+    <script type="text/javascript" src="src/data.json"></script>
     <script type="module" src="script.js" defer></script>
     
   </body>

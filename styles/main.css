@@ -15,8 +15,9 @@ body {
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none; /* Standard */
-  color: #fff;
-  font-family: monospace;
+  color: #ccc;
+  margin: 30px;
+  letter-spacing: 1px;
 }
 
 .nature {
@@ -26,15 +27,61 @@ body {
 h2 {
   font-size: 2.5rem;
   margin: 0;
-  color: #ccc;
 }
 
 .display {
   font-size: 2rem;
   font-weight: bold;
+  color: #fff;
 }
 
 .label {
   font-size: 1.25rem;
   font-weight: normal;
+  color: #fff;
+}
+
+.leader-board > h3 {
+  font-size: 1.5rem;
+}
+
+.leader-board > h3 > sup {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.leader-board > ul {
+  list-style: none;
+  margin: 0;
+  padding-right: 10px;
+}
+
+.leader-board > ul > li {
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.scrollable {
+  overflow: auto;
+  max-height: 200px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #333;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #555;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #888;
 }

@@ -11,8 +11,8 @@
 .container {
   position: relative;
   overflow: hidden;
-  width: var(--game-width);
-  height: var(--game-height);
+  min-width: var(--game-width);
+  min-height: var(--game-height);
   border: 10px solid #333;
   border-radius: 20px;
 }

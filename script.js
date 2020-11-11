@@ -59,10 +59,27 @@ function cleanUpLoop() {
   $$('.container > div').forEach(item => {
     let state = getComputedStyle(item.firstElementChild).getPropertyValue('--state');
     state = Number(state.trim());
-    if (item.getBoundingClientRect().top <= -70 || !state) {
+    if (item.getBoundingClientRect().top <= 0 || !state) {
       $('.container').removeChild(item);
     }
   });
   setTimeout(cleanUpLoop, 1);
 }
 cleanUpLoop();
+
+function getLeaderBoard() {
+  const maxIndex = 20;
+  $('.scores').innerHTML = '<li>Loading...</li>';
+  fetch('src/data.json')
+  .then(res => res.json())
+  .then(data => {
+    const list = data
+    .sort((a, b) => b.score - a.score)
+    .map(item => `<li>${item.name}: ${item.score}</li>`)
+    .filter((_, index) => index <= maxIndex)
+    .join('');
+    $('.scores').innerHTML = list;
+  });
+}
+
+getLeaderBoard();
