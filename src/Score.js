@@ -3,14 +3,17 @@ import { Utils } from './Utils.js';
 export class Score extends Utils {
   constructor() {
     super();
-    this.init();
   }
   init() {
     this.pointsList = this.getPoints({maxPoint:5, amountPerPoint:20});
     this.randomize(this.pointsList);
     this.points = 0;
+    this.missed = 0;
     this.getLeaderBoard({url:'src/data.json', maxIndex:20}) 
     const totalScoreAchievable = this.arraySum(this.pointsList);
+    this.$('.points.display').textContent = 0;
+    this.$('.points-missed.display').textContent = 0;
+    this.$('.released.display').textContent = this.pointsList.length;
   }
   getArrayKeys(max) {
     return [...Array(max).keys()].map(n => n + 1);

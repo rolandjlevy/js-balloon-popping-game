@@ -2,8 +2,9 @@
   --game-width: 400px;
   --game-height: 400px;
   --ball-size: 80px;
-  --red: #ee0066cc;
+  --red-dark: #88003b;
   --red-bright: #ee0066;
+  --red: #ee0066cc;
   --red-mid: #ff73b0;
   --red-light: #ffb8d7;
 }
@@ -26,7 +27,8 @@ body {
 
 h2 {
   font-size: 2.5rem;
-  margin: 0;
+  margin: 1rem 0;
+  color: var(--red-mid);
 }
 
 .display {
@@ -36,9 +38,9 @@ h2 {
 }
 
 .label {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: normal;
-  color: #fff;
+  text-align: center;
 }
 
 .leader-board > h3 {
@@ -64,6 +66,42 @@ h2 {
 .scrollable {
   overflow: auto;
   max-height: 200px;
+}
+
+.game-area-width {
+  max-width: var(--game-width);
+}
+
+.btn {
+  background-color: var(--red-bright);
+  font-size: 1.5rem;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-family: monospace;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  text-shadow: 0 2px 1px #000;
+  transition: all 0.15s ease;
+}
+
+.btn:active {
+  transform: translateY(2px);
+}
+
+.btn:hover, .btn.disabled {
+  background-color: var(--red-light);
+  color: #000;
+  text-shadow: 0 2px 1px #fff;
+  transition: all 0.15s ease;
+}
+
+.btn.disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 /* width */

@@ -13,16 +13,20 @@
 
     <main class="wrapper v-center">
       <header>
-        <h2>Pop!</h2>
+        <h2>POP!</h2>
       </header>
-      <section class="h-center">
-        <p class="v-center m-l-10">
-          <span class="label points">Score</span>
+      <section class="h-center game-area-width">
+        <p class="v-center">
+          <span class="label points h-center">Points Scored</span>
           <span class="display points">0</span>
         </p>
-        <p class="v-center m-l-10">
-          <span class="label remaining">Balloons</span>
-          <span class="display remaining">100</span>
+        <p class="v-center">
+          <span class="label points h-center">Points Missed</span>
+          <span class="display points-missed">0</span>
+        </p>
+        <p class="v-center">
+          <span class="label released h-center">Balloons Released</span>
+          <span class="display released">100</span>
         </p>
       </section>
 
@@ -31,6 +35,12 @@
           <div class="inner v-center"></div>
           <div class="stick"></div>
         </div>
+      </section>
+
+      <section>
+        <p class="v-center m-t-20">
+          <button class="btn">Play!</button>
+        </p>
       </section>
 
       <section class="leader-board v-center">

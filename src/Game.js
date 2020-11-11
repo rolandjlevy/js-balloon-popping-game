@@ -2,42 +2,39 @@ import { Utils } from './Utils.js';
 
 export class Game extends Utils {
   constructor() {
-    super()
+    super();
     this.timerId = null;
-    this.active = false;
+  }
+  addEventHook(score, balloon) {
+    this.$('.btn').addEventListener('click', (e) => {
+      score.init();
+      this.releaseLoop(score, balloon);
+      this.cleanUpLoop(score);
+      this.$('.btn').classList.add('disabled')
+    });
   }
   releaseLoop(score, balloon) {
     if (score.pointsList.length === 0) {
       clearTimeout(this.timerId);
+      this.$('.btn').classList.remove('disabled');
       return;
     }
     balloon.cloneOne();
     const duration = this.getRandomNumber(1, 15) * 100;
-    this.timerId = setTimeout(this.releaseLoop(score, balloon), duration);
+    this.timerId = setTimeout(() => this.releaseLoop(score, balloon), duration);
   }
-  cleanUpLoop() {
+  cleanUpLoop(score) {
     this.$$('.container > div').forEach(item => {
       let state = getComputedStyle(item.firstElementChild).getPropertyValue('--state');
       state = Number(state.trim());
-      if (item.getBoundingClientRect().top <= 0 || !state) {
+      if (item.getBoundingClientRect().top <= 130 || !state) {
+        if (state) {
+          score.missed += Number(item.id);
+          this.$('.points-missed').textContent = score.missed;
+        }
         this.$('.container').removeChild(item);
       }
     });
-    setTimeout(this.cleanUpLoop, 1);
+    setTimeout(() => this.cleanUpLoop(score), 1);
   }
 }
-
-// let count = 10;
-// let timerId = null;
-
-// function loop(a, b) {
-//   if (count == 0) {
-//     clearTimeout(timerId);
-//     return;
-//   }
-//   count--;
-//   console.log(count, a, b);
-//   timerId = setTimeout(loop(a, b), 100);
-// }
-
-// loop('x', 'y');
