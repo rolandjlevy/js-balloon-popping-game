@@ -4,18 +4,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1.0, maximum-scale=1.0">
     <title>POP 100!</title>
+    <link href="styles/root.css" rel="stylesheet" type="text/css" />
     <link href="styles/balloon.css" rel="stylesheet" type="text/css" />
     <link href="styles/layout.css" rel="stylesheet" type="text/css" />
     <link href="styles/main.css" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700;800&family=VT323&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+ 
   </head>
   <body>
 
     <main class="wrapper v-center">
       <header>
-        <h2>POP 100!</h2>
+        <h2 class="m-b-20">POP 100!</h2>
       </header>
-      <section class="h-center game-area-width">
+      <section class="h-center data-area-width m-b-20">
         <p class="v-center">
           <span class="label points h-center">Points Scored</span>
           <span class="display points">0</span>
@@ -25,26 +29,29 @@
           <span class="display points-missed">0</span>
         </p>
         <p class="v-center">
-          <span class="label released h-center">Balloons Released</span>
+          <span class="label released h-center">Balloons Remaining</span>
           <span class="display released">100</span>
         </p>
       </section>
 
-      <section class="container nature">
-        <div class="balloon">
-          <div class="inner v-center"></div>
-          <div class="stick"></div>
-        </div>
-      </section>
+      <section class="container nature m-tb-20" data-dump=""></section>
+      
+      <div class="balloon">
+        <div class="inner v-center"></div>
+        <div class="stick"></div>
+      </div>
 
-      <section>
-        <p class="v-center m-t-20">
-          <button class="btn">Play!</button>
+      <section class="h-center m-tb-20">
+        <p>
+          <button class="btn play">Play!</button>
+        </p>
+        <p class="m-l-20">
+          <button class="btn reset">Reset</button>
         </p>
       </section>
 
-      <section class="leader-board v-center">
-        <h3>Leader Board <sup>top 20</sup></h3>
+      <section class="leader-board v-center m-b-20">
+        <h3>Leader Board <sup>(top 20)</sup></h3>
         <ul class="leader-board-points scrollable"></ul>
       </section>
 

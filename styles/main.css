@@ -1,17 +1,6 @@
-:root {
-  --game-width: 400px;
-  --game-height: 400px;
-  --ball-size: 80px;
-  --red-dark: #88003b;
-  --red-bright: #ee0066;
-  --red: #ee0066cc;
-  --red-mid: #ff73b0;
-  --red-light: #ffb8d7;
-}
-
 body {
   background-color: #000;
-  font-family: monospace;
+  font-family: 'VT323', monospace;
   -webkit-user-select: none; /* Safari */        
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+/Edge */
@@ -26,10 +15,15 @@ body {
 }
 
 h2 {
-  font-size: 2.5rem;
-  margin: 1rem 0;
-  color: var(--red-mid);
+  font-size: 3rem;
+  margin: 0;
+  color: var(--red-bright);
   text-align: center;
+  text-shadow: 1px 1px 0 #fff;
+}
+
+p {
+  margin: 0;
 }
 
 .display {
@@ -39,13 +33,15 @@ h2 {
 }
 
 .label {
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: normal;
   text-align: center;
 }
 
 .leader-board > h3 {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
+  color: #fff;
+  margin: 10px 0;
 }
 
 .leader-board > h3 > sup {
@@ -56,12 +52,13 @@ h2 {
 .leader-board > ul {
   list-style: none;
   margin: 0;
+  padding: 0;
   padding-right: 10px;
 }
 
 .leader-board > ul > li {
-  font-size: 1rem;
-  line-height: 1.75;
+  font-size: 1.25rem;
+  line-height: 1.5;
 }
 
 .scrollable {
@@ -69,8 +66,8 @@ h2 {
   max-height: 200px;
 }
 
-.game-area-width {
-  max-width: var(--game-width);
+.data-area-width {
+  max-width: var(--data-width);
 }
 
 .btn {
@@ -79,13 +76,13 @@ h2 {
   color: #fff;
   padding: 5px 10px;
   border-radius: 5px;
-  font-family: monospace;
+  font-family: 'VT323', monospace;
   font-weight: bold;
   cursor: pointer;
   outline: none;
   border: none;
-  text-shadow: 0 2px 1px #000;
-  transition: all 0.15s ease;
+  text-shadow: 0 1px 0 #000;
+  transition: all 0.1s ease;
 }
 
 .btn:active {
@@ -95,8 +92,8 @@ h2 {
 .btn:hover, .btn.disabled {
   background-color: var(--red-light);
   color: #000;
-  text-shadow: 0 2px 1px #fff;
-  transition: all 0.15s ease;
+  text-shadow: 0 1px 0 #fff;
+  transition: all 0.1s ease;
 }
 
 .btn.disabled {

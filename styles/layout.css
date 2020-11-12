@@ -16,6 +16,10 @@
   flex-direction: column;
 }
 
+.m-tb-20, .m-bt-20 {
+  margin: 20px 0;
+}
+
 .m-t-20 {
   margin-top: 20px;
 }
@@ -34,4 +38,8 @@
 
 .m-l-10 {
   margin-left: 10px;
+}
+
+.m-l-20 {
+  margin-left: 20px;
 }

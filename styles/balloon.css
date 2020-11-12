@@ -1,13 +1,3 @@
-:root {
-  --game-width: 400px;
-  --game-height: 400px;
-  --balloon-size: 80px;
-  --red: #ee0066cc;
-  --red-bright: #ee0066;
-  --red-mid: #ff73b0;
-  --red-light: #ffdbeb;
-}
-
 .container {
   position: relative;
   overflow: hidden;
@@ -15,15 +5,22 @@
   min-height: var(--game-height);
   border: 10px solid #333;
   border-radius: 20px;
+  opacity: 0.5;
+  transition: all 1s ease;
+}
+
+.container.active {
+  opacity: 1;
+  transition: all 1s ease;
 }
 
 .balloon {
   position: absolute;
-  display: initial;
+  display: none;
   width: calc(var(--balloon-size) * 0.75);
   height: var(--balloon-size);
-  animation: rise 5s 1 cubic-bezier(0.19, 1, 0.22, 1) forwards;
-  /* animation: rise 10s 1 linear forwards; */
+  animation: rise 3s 1 cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  /* animation: rise 4s 1 cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; */
   animation-play-state: paused;
   filter: drop-shadow(0 0 10px #ffffff99);
   cursor: grab;
@@ -31,6 +28,7 @@
   --start-pos-x: 0;
   --rotation: 0;
   --points: 1;
+  /* --life-state: 0; */
   transition: all 0.25s ease;
 }
 
@@ -50,11 +48,11 @@
   background-color: var(--red);
   border-radius: 50%;
   color: #fff;
-  font-size: 2rem;
+  font-size: 2.5rem;
   box-shadow: inset -10px -10px 10px rgba(0,0,0,0.3);
-  animation: pop 0.5s 1 cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  animation: pop 0.3s 1 cubic-bezier(0.19, 1, 0.22, 1) forwards;
   animation-play-state: paused;
-  --state: 1;
+  /* --pop-state: 1; */
 }
 
 .balloon > .inner:before {
@@ -82,14 +80,19 @@
 }
 
 @keyframes rise {
-  from {
+  0% {
     --scale: calc((10 - var(--points)) / 10);
     transform: translateX(var(--start-pos-x)) translateY(var(--game-height)) rotate(0deg) scale(var(--scale));
+    --life-state: 1;
   }
-  to {
+  99% {
+    --life-state: 1;
+  }
+  100% {
     --scale: calc((10 - var(--points)) / 10);
-    transform: translateX(var(--end-pos-x)) translateY(calc(var(--balloon-size) * -2)) rotate(var(--rotation)) scale(var(--scale));
+    transform: translateX(var(--end-pos-x)) translateY(calc(var(--balloon-size) * -1)) rotate(var(--rotation)) scale(var(--scale));
     display: none;
+    --life-state: 0;
   }
 }
 
@@ -97,18 +100,19 @@
   0% {
     transform: scale(1, 1);
     opacity: 1;
+    --pop-state: 1;
   }
   20% {
     transform: scale(1.3, 1.1);
     opacity: 1;
     filter: drop-shadow(0 0 10px #ffffff99);
     background-color: var(--red-mid);
-    --state: 1;
+    --pop-state: 1;
   }
   100% {
     transform: scale(0.1, 0.1);
     opacity: 0;
-    --state: 0;
+    --pop-state: 0;
     cursor: auto;
   }
 }

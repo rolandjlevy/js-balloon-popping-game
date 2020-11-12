@@ -3,9 +3,9 @@ import { Game } from './src/Game.js';
 import { Score } from './src/Score.js';
 import { Sound } from './src/Sound.js';
 
-const score = new Score();
+const score = new Score(5, 6);
 const sound = new Sound();
 const game = new Game();
-const balloon = new Balloon(score, sound);
+const balloon = new Balloon(score, sound, game);
 
-game.addEventHook(score, balloon);
+game.addEventHooks(score, balloon);
