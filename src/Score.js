@@ -5,7 +5,7 @@ export class Score extends Utils {
     super();
   }
   init() {
-    this.pointsList = this.getPoints({maxPoint:5, amountPerPoint:2});
+    this.pointsList = this.getPoints({maxPoint:5, amountPerPoint:20});
     this.randomize(this.pointsList);
     this.points = 0;
     this.missed = 0;
