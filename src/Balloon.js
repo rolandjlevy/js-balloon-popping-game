@@ -5,17 +5,22 @@ export class Balloon extends Utils {
     super();
     this.score = score;
     this.sound = sound;
+    this.popEvent = 'ontouchstart' in document.documentElement ? 'touchstart' : 'click';
   }
   async cloneOne() {
     await this.delay(1000);
     if (this.score.pointsList.length <= 0) return;
     const clone = this.$('.balloon').cloneNode(true);
-    clone.addEventListener('click', (e) => {
+    this.popped = false;
+    clone.addEventListener(this.popEvent, (e) => {
       clone.firstElementChild.style.animationPlayState = 'running';
       clone.style.animationPlayState = 'paused';
-      this.score.points += Number(clone.id);
-      this.$('.points.display').textContent = this.score.points;
-      this.sound.init('pop.mp3');
+      // if (!this.popped) {
+        this.score.points += Number(clone.id);
+        this.$('.points.display').textContent = this.score.points;
+        this.sound.init('pop.mp3');
+        this.popped = true;
+      // }
     });
     const p = this.score.pointsList.pop();
     this.$('.released.display').textContent = this.score.pointsList.length;

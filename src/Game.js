@@ -18,10 +18,12 @@ export class Game extends Utils {
       clearTimeout(this.timerId);
       this.$('.btn').classList.remove('disabled');
       return;
+    } else {
+      console.log(this.timerId, score.pointsList.length);
+      balloon.cloneOne();
+      const duration = this.getRandomNumber(1, 15) * 100;
+      this.timerId = setTimeout(() => this.releaseLoop(score, balloon), duration);
     }
-    balloon.cloneOne();
-    const duration = this.getRandomNumber(1, 15) * 100;
-    this.timerId = setTimeout(() => this.releaseLoop(score, balloon), duration);
   }
   cleanUpLoop(score) {
     this.$$('.container > div').forEach(item => {
