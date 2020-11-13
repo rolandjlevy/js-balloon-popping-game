@@ -4,29 +4,32 @@ export class Game extends Utils {
   constructor() {
     super();
   }
-  addEventHooks(score, balloon) {
-    score.init();
-    this.removed = [];
-    this.added = [];
-    this.releaseTimerId = null;
-    this.cleanupTimerId = null;
-    this.$('.btn.play').addEventListener('click', (e) => {
-      this.$('.btn.play').classList.add('disabled');
-      this.$('.container').classList.add('active');
-      this.releaseLoop(score, balloon);
-      this.cleanupLoop(score);
-    });
-    this.$('.btn.reset').addEventListener('click', (e) => {
-      console.log('added: ', this.added.sort());
-      console.log('removed: ', this.removed.sort());
-      this.$('.btn.play').classList.remove('disabled');
-      this.$('.container').classList.remove('active');
-      this.clearTimerIds();
-      this.$('.container').innerHTML = '';
-      score.init();
-      this.removed = [];
-      this.added = [];
-    });
+  cleanupLoop(score) {
+    // this.$$('.container > div').forEach(div => {
+    //   const item = this.$(`div[id="${div.id}"]`) || null;
+    //   if (item) {
+    //     let poppedState = getComputedStyle(item.firstElementChild).getPropertyValue('--popped-state');
+    //     poppedState = Number(poppedState.trim());
+    //     let endState = getComputedStyle(item).getPropertyValue('--end-state');
+    //     endState = Number(endState.trim());
+    //     let balloonAnimationState = getComputedStyle(item.firstElementChild).getPropertyValue('--parent-animation-state');
+    //     item.style.setProperty('animation-play-state', balloonAnimationState.trim());
+    //     if (endState) {
+    //       score.missed += Number(item.dataset.points);
+    //       this.$('.points-missed').textContent = score.missed;
+    //       this.removed.push(item.id);
+    //       this.$('.container').removeChild(item);
+    //     }
+    //     if (poppedState) {
+    //     // if (item.firstElementChild.dataset.popped) {
+    //       console.log('popped: ', item.firstElementChild.dataset.popped)
+    //       this.removed.push(item.id);
+    //       item.style.setProperty('animation-play-state', 'paused');
+    //       // this.$('.container').removeChild(item);
+    //     }
+    //   }
+    // });
+    // this.cleanupTimerId = setTimeout(() => this.cleanupLoop(score), 1);
   }
   releaseLoop(score, balloon) {
     // if (score.pointsList.length === 0) {
@@ -40,28 +43,22 @@ export class Game extends Utils {
       this.releaseTimerId = setTimeout(() => this.releaseLoop(score, balloon), duration);
     // }
   }
-  cleanupLoop(score) {
-    this.$$('.container > div').forEach(item => {
-      let popState = getComputedStyle(item.firstElementChild).getPropertyValue('--pop-state');
-      popState = Number(popState.trim());
-      let lifeState = getComputedStyle(item).getPropertyValue('--life-state');
-      lifeState = Number(lifeState.trim());
-      // console.log({lifeState, points:item.dataset.points});
-      // const containerTop = this.$('.container').getBoundingClientRect().top - window.scrollY;
-      // const balloonTop = item.getBoundingClientRect().top - window.scrollY;
-      // const getBoundingClientRect = document.body.getBoundingClientRect().top;
-      // if (item.getBoundingClientRect().top <= 200 || !popState) {
-
-      if (!lifeState && popState) {
-        score.missed += Number(item.dataset.points);
-        this.$('.points-missed').textContent = score.missed;
-      }
-      if (!lifeState || !popState) {
-        this.removed.push(item.id);
-        this.$('.container').removeChild(item);
-      }
+  addEventHooks(score, balloon) {
+    score.init();
+    this.releaseTimerId = null;
+    this.$('.btn.play').addEventListener('click', (e) => {
+      this.$('.btn.play').classList.add('disabled');
+      this.$('.container').classList.add('active');
+      this.releaseLoop(score, balloon);
+      // this.cleanupLoop(score);
     });
-    this.cleanupTimerId = setTimeout(() => this.cleanupLoop(score), 1);
+    this.$('.btn.reset').addEventListener('click', (e) => {
+      this.$('.btn.play').classList.remove('disabled');
+      this.$('.container').classList.remove('active');
+      this.clearTimerIds();
+      this.$('.container').innerHTML = '';
+      score.init();
+    });
   }
   clearTimerIds() {
     let id = window.setTimeout(function() {}, 0);

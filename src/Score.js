@@ -30,7 +30,7 @@ export class Score extends Utils {
       return acc;
     }, [])
     .flat(1)
-    // .slice(0, this.maxPoint * this.amountPerPoint);
+    .slice(0, this.maxPoint * this.amountPerPoint);
   }
   arraySum(arr) {
     return arr.reduce((acc, item) => {
