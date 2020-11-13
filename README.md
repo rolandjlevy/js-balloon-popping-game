@@ -12,7 +12,7 @@ A game of speed and skill to really test your reflexes! Try to pop all 100 ballo
 
 ### How to Play 👉
 - **Aim of the game**: Pop all 100 balloons without missing any.
-- **Scoring**: Each balloon shows the amount of points on it. 
+- **Scoring**: Each balloon shows the amount of points on it. Popping smaller balloons scores more points.
 - **Bonus points**: Look out for the yellow balloon to get 20 bonus points!
 
 ### Features 💡
