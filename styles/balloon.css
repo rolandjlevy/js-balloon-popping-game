@@ -26,7 +26,7 @@
 }
 
 .balloon {
-  --speed: 13s;
+  --speed: 3s;
   position: absolute;
   display: none;
   width: calc(var(--balloon-size) * 0.75);
@@ -105,7 +105,7 @@
   }
   100% {
     --scale: calc((10 - var(--points) + var(--bonus)) / 10);
-    transform: translateX(var(--end-pos-x)) translateY(calc(var(--balloon-size) * -1.5)) rotate(var(--rotation)) scale(var(--scale));
+    transform: translateX(var(--end-pos-x)) translateY(calc(var(--balloon-size) * -1.25)) rotate(var(--rotation)) scale(var(--scale));
   }
 }
 

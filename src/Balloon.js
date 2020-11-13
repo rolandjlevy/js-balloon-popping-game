@@ -55,14 +55,11 @@ export class Balloon extends Utils {
   checkForBonus(points) {
     if (points == this.score.bonusPoint) {
       this.clone.classList.add('bonus');
-      this.clone.style.setProperty('--bonus', 1);
-      // this.clone.style.setProperty('--rotation', '0deg');
-      // this.clone.style.setProperty('transform', 'rotate(0deg)');
+      this.clone.style.setProperty('--bonus', 20);
     } else {
       this.clone.classList.remove('bonus');
       this.clone.style.setProperty('--bonus', 0);
     }
-    // console.log({points, bonusPoint:this.score.bonusPoint}, this.clone.classList);
   }
   setPosition() {
     const endPosX = `${this.getRandomNumber(0, 320)}px`

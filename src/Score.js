@@ -13,14 +13,12 @@ export class Score extends Utils {
     this.pointsList = this.getPoints();
     this.pointsList[this.pointsList.length-1] = this.bonusPoint;
     this.randomize(this.pointsList);
-    console.log(this.pointsList);
     this.points = 0;
     this.missed = 0;
     this.$('.points.display').textContent = 0;
     this.$('.points-missed.display').textContent = 0;
     this.$('.released.display').textContent = this.pointsList.length;
     const sum = this.arraySum(this.pointsList);
-    console.log(sum);
     this.$('.container').setAttribute('data-dump', sum);
   }
   getArrayKeys(max) {
