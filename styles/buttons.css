@@ -1,0 +1,54 @@
+.btn {
+  background-color: var(--red-bright);
+  font-size: 1.5rem;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-family: 'VT323', monospace;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  text-shadow: 0 1px 0 #000;
+  transition: all 0.1s ease;
+}
+
+.btn:active {
+  transform: translateY(2px);
+}
+
+.btn:hover, .btn.disabled {
+  background-color: var(--red-light);
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  transition: all 0.1s ease;
+}
+
+.btn.disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.btn > i {
+  font-size: 1rem;
+  margin-left: 5px;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn.sound > i {
+  font-size: 1.2rem;
+  margin-left: 0;
+}
+
+.btn.sound > i::before {
+  font-family: "Font Awesome 5 Free"; 
+  content: "\f028";
+}
+
+.btn.sound.off > i::before {
+  content: "\f6a9";
+  margin: 0 1.5px;
+}

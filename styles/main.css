@@ -10,16 +10,12 @@ body {
   letter-spacing: 1px;
 }
 
-.nature {
-  background: linear-gradient(0deg,#7eb400 10%,#d5ff3d 30%,#fff 50%,#c6e8ff 55%,#34aaf8,#032bac 90%);
-}
-
 h2 {
   font-size: 3rem;
   margin: 0;
   color: var(--red-bright);
   text-align: center;
-  /* text-shadow: 1px 1px 0 #fff; */
+  text-shadow: 0 -1px 0 var(--red-light);
 }
 
 p {
@@ -68,38 +64,6 @@ p {
 
 .data-area-width {
   max-width: var(--data-width);
-}
-
-.btn {
-  background-color: var(--red-bright);
-  font-size: 1.5rem;
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-family: 'VT323', monospace;
-  font-weight: bold;
-  cursor: pointer;
-  outline: none;
-  border: none;
-  text-shadow: 0 1px 0 #000;
-  transition: all 0.1s ease;
-}
-
-.btn:active {
-  transform: translateY(2px);
-}
-
-.btn:hover, .btn.disabled {
-  background-color: var(--red-light);
-  color: #000;
-  text-shadow: 0 1px 0 #fff;
-  transition: all 0.1s ease;
-}
-
-.btn.disabled {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.5;
 }
 
 /* width */

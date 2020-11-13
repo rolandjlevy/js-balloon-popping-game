@@ -1,11 +1,11 @@
 export class Sound {
-  constructor(state) {
+  constructor() {
     this.sound = document.createElement('audio');
     this.sound.setAttribute('preload', 'auto');
     this.sound.setAttribute('controls', 'none');
     this.sound.setAttribute('muted', false);
     this.sound.style.display = 'none';
-    this.state = state;
+    this.state = true;
     document.body.appendChild(this.sound);
   }
   init(src) {
@@ -22,9 +22,9 @@ export class Sound {
     }
   }
   play() {
-    if (this.state === 'on') this.sound.play();
+    if (this.state) this.sound.play();
   }
   pause() {
-    if (this.state === 'on') this.sound.pause();
+    if (this.state) this.sound.pause();
   }
 }

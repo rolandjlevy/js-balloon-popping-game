@@ -4,19 +4,7 @@ export class Game extends Utils {
   constructor() {
     super();
   }
-  releaseLoop(score, balloon) {
-    // if (score.pointsList.length === 0) {
-      // this.clearTimerIds();
-      // clearTimeout(this.releaseTimerId);
-      // this.$('.btn.play').classList.remove('disabled');
-      // return;
-    //} else {
-      balloon.cloneOne();
-      const duration = this.getRandomNumber(1, 15) * 100;
-      this.releaseTimerId = setTimeout(() => this.releaseLoop(score, balloon), duration);
-    // }
-  }
-  addEventHooks(score, balloon) {
+  addEventHooks(score, balloon, sound) {
     score.init();
     this.releaseTimerId = null;
     this.$('.btn.play').addEventListener('click', (e) => {
@@ -31,6 +19,15 @@ export class Game extends Utils {
       this.$('.container').innerHTML = '';
       score.init();
     });
+    this.$('.btn.sound').addEventListener('click', (e) => {
+      this.$('.btn.sound').classList.toggle('off');
+      sound.state = !sound.state;
+    });
+  }
+  releaseLoop(score, balloon) {
+    balloon.cloneOne();
+    const duration = this.getRandomNumber(1, 15) * 100;
+    this.releaseTimerId = setTimeout(() => this.releaseLoop(score, balloon), duration);
   }
   clearTimerIds() {
     let id = window.setTimeout(function() {}, 0);

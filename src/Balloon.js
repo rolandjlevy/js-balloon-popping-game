@@ -6,8 +6,7 @@ export class Balloon extends Utils {
     this.score = score;
     this.sound = sound;
     this.game = game;
-    this.popEvent = 'ontouchstart' in document.documentElement ? 'touchstart' : 'click';
-    this.cleanupTimerId = null;
+    this.event = this.getEvents();
   }
   async cloneOne() {
     await this.delay(1000);
@@ -15,24 +14,34 @@ export class Balloon extends Utils {
     this.clone = this.$('.balloon').cloneNode(true);
     this.clone.id = Math.round(Math.random() * 100000);
     this.clone.firstElementChild.style.animationPlayState = 'paused';
-    this.addPopEvent();
+    this.handleClickEvent();
     this.setPoints();
     this.setPosition();
+    this.handleAnimateEvents();
     this.$('.container').appendChild(this.clone);
-    this.addCleanupEvents();
-    this.popped = false;
   }
-  addCleanupEvents() {
-    this.clone.addEventListener('animationend', (e) => {
+  handleAnimateEvents() {
+    this.popped = false;
+    this.clone.addEventListener(this.event.animate, (e) => {
       if (!this.popped) {
         this.score.missed += Number(e.target.dataset.points);
         this.$('.points-missed').textContent = this.score.missed;
         this.$('.container').removeChild(e.target);
       }
     });
-    this.clone.firstElementChild.addEventListener('animationend', (e) => {
+    this.clone.firstElementChild.addEventListener(this.event.animate, (e) => {
       this.popped = true;
       this.$('.container').removeChild(e.target.parentNode);
+    });
+  }
+  handleClickEvent() {
+    this.clone.firstElementChild.addEventListener(this.event.click, (e) => {
+      const clone = e.target;
+      clone.style.animationPlayState = 'running';
+      clone.parentNode.style.animationPlayState = 'paused';
+      this.score.points += Number(clone.parentNode.dataset.points);
+      this.$('.points.display').textContent = this.score.points;
+      this.sound.init('pop.mp3');
     });
   }
   setPoints() {
@@ -41,6 +50,19 @@ export class Balloon extends Utils {
     this.clone.setAttribute('data-points', points);
     this.clone.style.setProperty('--points', points);
     this.$('.released.display').textContent = this.score.pointsList.length;
+    this.checkForBonus(points);
+  }
+  checkForBonus(points) {
+    if (points == this.score.bonusPoint) {
+      this.clone.classList.add('bonus');
+      this.clone.style.setProperty('--bonus', 1);
+      // this.clone.style.setProperty('--rotation', '0deg');
+      // this.clone.style.setProperty('transform', 'rotate(0deg)');
+    } else {
+      this.clone.classList.remove('bonus');
+      this.clone.style.setProperty('--bonus', 0);
+    }
+    // console.log({points, bonusPoint:this.score.bonusPoint}, this.clone.classList);
   }
   setPosition() {
     const endPosX = `${this.getRandomNumber(0, 320)}px`
@@ -52,14 +74,11 @@ export class Balloon extends Utils {
     this.clone.style.display = 'initial';
     this.clone.style.animationPlayState = 'running';
   }
-  addPopEvent() {
-    this.clone.firstElementChild.addEventListener(this.popEvent, (e) => {
-      const clone = e.target;
-      clone.style.animationPlayState = 'running';
-      clone.parentNode.style.animationPlayState = 'paused';
-      this.score.points += Number(clone.parentNode.dataset.points);
-      this.$('.points.display').textContent = this.score.points;
-      this.sound.init('pop.mp3');
-    });
+  getEvents() {
+    const docElem = document.documentElement;
+    return {
+      click: 'ontouchstart' in docElem ? 'touchstart' : 'click',
+      animate: 'onanimationend' in docElem ? 'animationend' : 'webkitAnimationEnd'
+    }
   }
 }
