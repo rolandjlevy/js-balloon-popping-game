@@ -5,7 +5,8 @@ export class Score extends Utils {
     super();
     this.maxPoint = maxPoint;
     this.amountPerPoint = amountPerPoint;
-    this.getLeaderBoard({url:'src/data.json', maxIndex:20}) 
+    this.maxPointsPossible = 100;
+    this.getLeaderBoard({url:'src/data.json', maxIndex:20})
   }
   init() {
     this.pointsList = this.getPoints();
@@ -30,7 +31,7 @@ export class Score extends Utils {
       return acc;
     }, [])
     .flat(1)
-    .slice(0, this.maxPoint * this.amountPerPoint);
+    .slice(0, this.maxPointsPossible);
   }
   arraySum(arr) {
     return arr.reduce((acc, item) => {

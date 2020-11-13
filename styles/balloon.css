@@ -15,7 +15,7 @@
 }
 
 .balloon {
-  --speed: 2s;
+  --speed: 1.5s;
   position: absolute;
   display: none;
   width: calc(var(--balloon-size) * 0.75);

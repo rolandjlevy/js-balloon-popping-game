@@ -4,33 +4,6 @@ export class Game extends Utils {
   constructor() {
     super();
   }
-  cleanupLoop(score) {
-    // this.$$('.container > div').forEach(div => {
-    //   const item = this.$(`div[id="${div.id}"]`) || null;
-    //   if (item) {
-    //     let poppedState = getComputedStyle(item.firstElementChild).getPropertyValue('--popped-state');
-    //     poppedState = Number(poppedState.trim());
-    //     let endState = getComputedStyle(item).getPropertyValue('--end-state');
-    //     endState = Number(endState.trim());
-    //     let balloonAnimationState = getComputedStyle(item.firstElementChild).getPropertyValue('--parent-animation-state');
-    //     item.style.setProperty('animation-play-state', balloonAnimationState.trim());
-    //     if (endState) {
-    //       score.missed += Number(item.dataset.points);
-    //       this.$('.points-missed').textContent = score.missed;
-    //       this.removed.push(item.id);
-    //       this.$('.container').removeChild(item);
-    //     }
-    //     if (poppedState) {
-    //     // if (item.firstElementChild.dataset.popped) {
-    //       console.log('popped: ', item.firstElementChild.dataset.popped)
-    //       this.removed.push(item.id);
-    //       item.style.setProperty('animation-play-state', 'paused');
-    //       // this.$('.container').removeChild(item);
-    //     }
-    //   }
-    // });
-    // this.cleanupTimerId = setTimeout(() => this.cleanupLoop(score), 1);
-  }
   releaseLoop(score, balloon) {
     // if (score.pointsList.length === 0) {
       // this.clearTimerIds();
@@ -50,7 +23,6 @@ export class Game extends Utils {
       this.$('.btn.play').classList.add('disabled');
       this.$('.container').classList.add('active');
       this.releaseLoop(score, balloon);
-      // this.cleanupLoop(score);
     });
     this.$('.btn.reset').addEventListener('click', (e) => {
       this.$('.btn.play').classList.remove('disabled');
