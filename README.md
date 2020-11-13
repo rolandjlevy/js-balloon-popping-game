@@ -1,6 +1,6 @@
 # 🎈 POP 100! 🎈
 
-A game of speed and skill to test your reflexes. Try to pop all 100 balloons without missing any. To add your score to the Leaderboard just send me a screenshot of your score and your name.
+A game of speed and skill to really test your reflexes! Try to pop all 100 balloons without missing any. To add your score to the Leaderboard just send me a screenshot of your score with your name.
 
 ### Links 🔗
 - [Play the game](https://js-balloon-popping-game.rolandjlevy.repl.co/)
@@ -17,5 +17,7 @@ A game of speed and skill to test your reflexes. Try to pop all 100 balloons wit
 
 ### Features 💡
 - Completely responsive and mobile friendly
+- Rset the game at any time
+- Turn the sound on or off
 - Built from scratch with Vanilla JavaScript and CSS; no front-end frameworks or libraries like React, Vue etc...
 - Includes Leader board. Send me a screenshot of your score with your name so I can add you in.
