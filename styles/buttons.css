@@ -17,7 +17,7 @@
   transform: translateY(2px);
 }
 
-.btn:hover, .btn.disabled {
+.btn:hover:not(.disabled) {
   background-color: var(--red-light);
   color: #000;
   text-shadow: 0 1px 0 #fff;
@@ -27,7 +27,7 @@
 .btn.disabled {
   cursor: not-allowed;
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.7;
 }
 
 .btn > i {
