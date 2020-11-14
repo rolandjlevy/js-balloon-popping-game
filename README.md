@@ -7,7 +7,7 @@ A game of speed and skill to really test your reflexes! Try to pop all 100 ballo
 - [View the source code](https://repl.it/@RolandJLevy/js-balloon-popping-game)
 - [Explore the Github repo](https://github.com/rolandjlevy/js-balloon-popping-game)
 
-### The game 🎈
+### The game 🎈📌
 ![POP 100!](https://github.com/rolandjlevy/js-balloon-popping-game/blob/master/images/pop-100.png?raw=true "POP 100!")
 
 ### How to Play 👉

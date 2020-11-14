@@ -7,6 +7,8 @@
   border-radius: 20px;
   opacity: 0.5;
   transition: all 1s ease;
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='28' height='34' viewport='0 0 100 100' style='fill:black;font-size:17px;'><text y='50%'>📌</text></svg>") 10 10, auto;
+
 }
 
 .container.active {
@@ -34,7 +36,7 @@
   animation: rise var(--speed) 1 cubic-bezier(0.19, 1, 0.22, 1) forwards;
   animation-play-state: paused;
   filter: drop-shadow(0 0 10px #ffffff99);
-  cursor: grab;
+  /* cursor: grab; */
   --end-pos-x: 0;
   --start-pos-x: 0;
   --points: 1;
@@ -45,7 +47,7 @@
 }
 
 .balloon:active {
-  cursor: grabbing;
+  /* cursor: grabbing; */
 }
 
 .balloon:hover {
@@ -124,6 +126,6 @@
   100% {
     transform: scale(0.1, 0.1);
     opacity: 0;
-    cursor: auto;
+    /* cursor: auto; */
   }
 }
