@@ -19,6 +19,12 @@ h2 {
   letter-spacing: 2px;
 }
 
+h2 > span {
+  font-size: 2rem;
+  margin: 0 8px 0 0;
+  text-shadow: none;
+}
+
 p {
   margin: 0;
 }
