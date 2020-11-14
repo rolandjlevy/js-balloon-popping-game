@@ -62,7 +62,7 @@
   color: #fff;
   font-size: 2.5rem;
   box-shadow: inset -10px -10px 10px rgba(0,0,0,0.3);
-  animation: pop 0.3s 1 cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  animation: pop 0.5s 1 cubic-bezier(0.19, 1, 0.22, 1) forwards;
   animation-play-state: paused;
   text-shadow: 1px 1px 0 #333;
 }

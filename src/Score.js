@@ -5,9 +5,10 @@ export class Score extends Utils {
     super();
     this.maxPoint = maxPoint;
     this.amountPerPoint = amountPerPoint;
-    this.maxPointsPossible = 100;
+    this.maxBalloonsPossible = 100;
     this.getLeaderBoard({url:'src/data.json', maxIndex:20})
     this.bonusPoint = 20;
+    const getMax = this.getMaxPoints(amountPerPoint, maxPoint, this.bonusPoint);
   }
   init() {
     this.pointsList = this.getPoints();
@@ -33,7 +34,7 @@ export class Score extends Utils {
       return acc;
     }, [])
     .flat(1)
-    .slice(0, this.maxPointsPossible);
+    .slice(0, this.maxBalloonsPossible);
   }
   arraySum(arr) {
     return arr.reduce((acc, item) => {
@@ -53,5 +54,9 @@ export class Score extends Utils {
       .join('');
       this.$('.leader-board-points').innerHTML = list;
     });
+  }
+  getMaxPoints(length, max, bonus) {
+    const withoutBonus = length * max * (max+1)/2;
+    return withoutBonus - max + bonus;
   }
 }
