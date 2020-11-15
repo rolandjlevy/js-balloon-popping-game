@@ -8,7 +8,6 @@
   opacity: 0.5;
   transition: all 1s ease;
   cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='28' height='34' viewport='0 0 100 100' style='fill:black;font-size:17px;'><text y='50%'>📌</text></svg>") 10 10, auto;
-
 }
 
 .container.active {
@@ -48,6 +47,7 @@
 
 .balloon:active {
   /* cursor: grabbing; */
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='28' height='34' viewport='0 0 100 100' style='fill:black;font-size:17px;'><text y='50%'>💥</text></svg>") 10 10, auto;
 }
 
 .balloon:hover {

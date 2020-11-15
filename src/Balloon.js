@@ -21,27 +21,30 @@ export class Balloon extends Utils {
     this.$('.container').appendChild(this.clone);
   }
   handleAnimateEvents() {
-    this.popped = false;
     this.clone.addEventListener(this.event.animate, (e) => {
-      if (!this.popped) {
+      const balloonExists = e.target.id || false;
+      if (balloonExists) {
         this.score.missed += Number(e.target.dataset.points);
         this.$('.points-missed').textContent = this.score.missed;
         this.$('.container').removeChild(e.target);
       }
     });
     this.clone.firstElementChild.addEventListener(this.event.animate, (e) => {
-      this.popped = true;
-      this.$('.container').removeChild(e.target.parentNode);
+        this.$('.container').removeChild(e.target.parentNode);
     });
   }
   handleClickEvent() {
+    this.popped = false;
     this.clone.firstElementChild.addEventListener(this.event.click, (e) => {
-      const clone = e.target;
-      clone.style.animationPlayState = 'running';
-      clone.parentNode.style.animationPlayState = 'paused';
-      this.score.points += Number(clone.parentNode.dataset.points);
-      this.$('.points.display').textContent = this.score.points;
-      this.sound.init('pop.mp3');
+      if (!this.popped) {
+        const clone = e.target;
+        clone.style.animationPlayState = 'running';
+        clone.parentNode.style.animationPlayState = 'paused';
+        this.score.points += Number(clone.parentNode.dataset.points);
+        this.$('.points.display').textContent = this.score.points;
+        this.sound.init('pop.mp3');
+        this.popped = true;
+      }
     });
   }
   setPoints() {
