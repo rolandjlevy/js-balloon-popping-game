@@ -16,6 +16,14 @@
   flex-direction: column;
 }
 
+.text-center {
+  text-align: center;
+}
+
+.p-20 {
+  padding: 20px;
+}
+
 .m-tb-20, .m-bt-20 {
   margin: 20px 0;
 }

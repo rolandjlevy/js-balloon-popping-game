@@ -45,6 +45,31 @@ p {
   max-width: var(--data-width);
 }
 
+footer {
+  font-size: 1.25rem;
+  position: relative;
+  bottom: 0;
+  color: #ccc;
+}
+
+footer a {
+  color: inherit;
+  font-weight: bold;
+  transition: all 0.25s ease;
+}
+
+footer a:hover {
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.new-tab-icon::after {
+  font-family: "Font Awesome 5 Free"; 
+  font-weight: 900; 
+  content: "\f35d";
+  margin-left: 5px;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
