@@ -44,7 +44,7 @@ p {
 .leader-board > h3 {
   font-size: 1.75rem;
   color: #fff;
-  margin: 10px 0;
+  margin: 10px 0 20px 0;
 }
 
 .leader-board > h3 > sup {
@@ -56,12 +56,18 @@ p {
   list-style: none;
   margin: 0;
   padding: 0;
-  padding-right: 10px;
+  width: fit-content;
 }
 
 .leader-board > ul > li {
   font-size: 1.25rem;
-  line-height: 1.5;
+  line-height: 1.75;
+  white-space: nowrap;
+  padding-right: 15px;
+}
+
+.leader-board > ul > li:not(:first-child) {
+  border-top: 2px dotted #333;
 }
 
 .scrollable {
