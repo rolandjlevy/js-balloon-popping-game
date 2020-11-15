@@ -1,0 +1,34 @@
+
+.leader-board > h3 {
+  font-size: 1.75rem;
+  color: #fff;
+  margin: 10px 0 20px 0;
+}
+
+.leader-board > h3 > sup {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.leader-board > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: fit-content;
+}
+
+.leader-board > ul > li {
+  font-size: 1.25rem;
+  line-height: 1.75;
+  white-space: nowrap;
+  padding-right: 15px;
+}
+
+.leader-board > ul > li:not(:first-child) {
+  border-top: 2px dotted #666;
+}
+
+.scrollable {
+  overflow: auto;
+  max-height: 200px;
+}
