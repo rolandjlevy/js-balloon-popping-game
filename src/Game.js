@@ -3,6 +3,7 @@ import { Utils } from './Utils.js';
 export class Game extends Utils {
   constructor() {
     super();
+    this.$('#year').textContent = new Date().getFullYear();
   }
   addEventHooks(score, balloon, sound) {
     score.init();
